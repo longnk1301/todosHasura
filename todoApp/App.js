@@ -26,10 +26,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+import Todos from './src/components/Todos/Todos';
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'localhost:8080/graphql',
+  uri: 'http://172.16.5.137:8080/v1/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -74,6 +75,7 @@ const App: () => Node = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={backgroundStyle}>
           <Header />
+          <Todos />
           <View
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
