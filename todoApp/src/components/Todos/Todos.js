@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {View, Text, FlatList} from 'react-native';
+import {View, Text} from 'react-native';
 import {gql, useQuery} from '@apollo/client';
-import Task from '../Task/Task';
 
 const CHAPTERS_QUERY = gql`
   query Todos {
@@ -15,22 +14,15 @@ const CHAPTERS_QUERY = gql`
   }
 `;
 
-const Todos = ({navigation}) => {
+const Todos = () => {
   const {data, loading} = useQuery(CHAPTERS_QUERY);
 
   return (
     <>
       {!loading && data && (
-        <FlatList
-          data={data.todos}
-          renderItem={({item}) => (
-            <Task
-              task={item}
-              onPress={() => navigation.navigate('Task', {chapter: item})}
-            />
-          )}
-          keyExtractor={task => task.id.toString()}
-        />
+        <View>
+          <Text>{JSON.stringify(data)}</Text>
+        </View>
       )}
     </>
   );
